@@ -52,9 +52,13 @@ router.post( '/count', function ( req, res ) {
   collection(Count).insertOne( req.body ).then(function(r) {
     var num = collection(Count).find();
     num.count(function(err, cnt){
-    	console.log("# of documents: " + cnt);
-    	// res.header('Content-Type', 'text/plain;charset=utf-8');
-    	res.send(String(cnt));
+        console.log("# of documents: " + cnt);
+        // res.header('Content-Type', 'text/plain;charset=utf-8');
+        if(cnt % 2 == 0){
+            res.send("static");
+        } else {
+            res.send("anchor");
+        }
     });
   });
 } );
