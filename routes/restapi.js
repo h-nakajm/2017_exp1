@@ -7,7 +7,8 @@ var Participants = 'participants';
 var Results = 'results';
 var Ad_clicked = 'ad_clicked';
 var Questionnaire = 'questionnaire';
-var Finish = 'finish';
+// var Finish = 'finish';
+var Count = 'count';
 
 // For Cross Origin
 router.all( '/*', function ( req, res, next ) {
@@ -41,9 +42,20 @@ router.post( '/questionnaire', function ( req, res ) {
   });
 } );
 
-router.post( '/finish', function ( req, res ) {
+/** router.post( '/finish', function ( req, res ) {
   collection(Finish).insertOne( req.body ).then(function(r) {
     res.send( r );
+  });
+} ); **/
+
+router.post( '/count', function ( req, res ) {
+  collection(Count).insertOne( req.body ).then(function(r) {
+    var num = collection(Count).find();
+    num.count(function(err, cnt){
+    	console.log("# of documents: " + cnt);
+    	// res.header('Content-Type', 'text/plain;charset=utf-8');
+    	res.send(String(cnt));
+    });
   });
 } );
 
