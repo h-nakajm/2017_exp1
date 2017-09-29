@@ -61,6 +61,6 @@ router.post( '/count', function ( req, res ) {
         }
     });
   });
-} );
+});
 
 module.exports = router;
