@@ -54,10 +54,16 @@ router.post( '/count', function ( req, res ) {
     num.count(function(err, cnt){
         console.log("# of documents: " + cnt);
         // res.header('Content-Type', 'text/plain;charset=utf-8');
-        if(cnt % 2 == 0){
+        if(cnt % 5 == 0){
             res.send("static");
-        } else {
+        } else if(cnt % 5 == 1) {
             res.send("anchor");
+        } else if(cnt % 5 == 2){
+            res.send("upper");
+        } else if(cnt % 5 == 3){
+            res.send("scroll");
+        } else {
+            res.send("reverse");
         }
     });
   });
