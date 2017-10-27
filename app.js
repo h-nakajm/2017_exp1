@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
-var restapi = require('./routes/restapi');
+// var restapi = require('./routes/restapi');
 var exp1 = require('./routes/exp1');
 var exp2 = require('./routes/exp2');
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use('/', index);
 // app.use('/users', users);
-app.use('/test',restapi);
+// app.use('/test',restapi);
 app.use('/exp1',exp1);
 app.use('/exp2',exp2);
 

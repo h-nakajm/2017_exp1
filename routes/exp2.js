@@ -9,6 +9,7 @@ var Ad_clicked = 'ad_clicked';
 var Questionnaire = 'questionnaire';
 // var Finish = 'finish';
 var Count = 'count';
+var Blist = 'blist';
 
 // For Cross Origin
 router.all( '/*', function ( req, res, next ) {
@@ -51,7 +52,16 @@ router.post( '/finish', function ( req, res ) {
 router.post( '/count', function ( req, res ) {
   collection(Count).insertOne( req.body ).then(function(r) {
     var num = collection(Count).find();
-    num.count(function(err, cnt){
+    collection(Blist)
+		.find({id: req.body.id})
+    	.count()
+    	.then(function(count) {
+    		console.log(count);
+    		res.send("OK");
+    	});
+    
+    
+    /*num.count(function(err, cnt){
         console.log("# of documents: " + cnt);
         // res.header('Content-Type', 'text/plain;charset=utf-8');
         if(cnt % 5 == 0){
@@ -65,7 +75,7 @@ router.post( '/count', function ( req, res ) {
         } else {
             res.send("reverse");
         }
-    });
+    });*/
   });
 });
 
