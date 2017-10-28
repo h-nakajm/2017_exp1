@@ -10,6 +10,7 @@ var Questionnaire = 'questionnaire';
 // var Finish = 'finish';
 var Count = 'count';
 var Blist = 'blist';
+var Rejected = 'rejected';
 
 // For Cross Origin
 router.all( '/*', function ( req, res, next ) {
@@ -26,15 +27,18 @@ router.post( '/participants', function ( req, res ) {
     .count()
     .then(function(count) {
       if(count == 0){
+        collection(Participants).insertOne( req.body ).then(function(r) {
+          // nothing to do.
+        });
         res.send("OK");
       } else {
+        collection(Rejected).insertOne( req.body ).then(function(r) {
+          // nothing to do.
+        });
         res.send("NG");
       }
     });
 
-  collection(Participants).insertOne( req.body ).then(function(r) {
-    // res.send( r );
-  });
 } );
 
 router.post( '/results', function ( req, res ) {
