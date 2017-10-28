@@ -20,8 +20,20 @@ router.all( '/*', function ( req, res, next ) {
 
 // POST insert data
 router.post( '/participants', function ( req, res ) {
+  var num = collection(Count).find();
+  collection(Blist)
+    .find({id: req.body.id})
+    .count()
+    .then(function(count) {
+      if(count == 0){
+        res.send("OK");
+      } else {
+        res.send("NG");
+      }
+    });
+
   collection(Participants).insertOne( req.body ).then(function(r) {
-    res.send( r );
+    // res.send( r );
   });
 } );
 
@@ -52,16 +64,7 @@ router.post( '/finish', function ( req, res ) {
 router.post( '/count', function ( req, res ) {
   collection(Count).insertOne( req.body ).then(function(r) {
     var num = collection(Count).find();
-    collection(Blist)
-		.find({id: req.body.id})
-    	.count()
-    	.then(function(count) {
-    		console.log(count);
-    		res.send("OK");
-    	});
-    
-    
-    /*num.count(function(err, cnt){
+    num.count(function(err, cnt){
         console.log("# of documents: " + cnt);
         // res.header('Content-Type', 'text/plain;charset=utf-8');
         if(cnt % 5 == 0){
@@ -75,7 +78,7 @@ router.post( '/count', function ( req, res ) {
         } else {
             res.send("reverse");
         }
-    });*/
+    });
   });
 });
 
