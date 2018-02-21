@@ -5,6 +5,7 @@
 ## Requirements
 
 - Node.js 3.10+
+- MongoDB 3.4+
 
 ## Usage
 
