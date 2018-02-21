@@ -14,3 +14,7 @@
 git clone https://github.com/h-nakajm/anchor_exp
 cd anchor_exp
 ``` 
+
+## License
+
+MIT
